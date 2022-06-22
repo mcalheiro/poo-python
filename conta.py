@@ -17,14 +17,21 @@ class Conta:
         print(f'Depositou: R$ {valor:.2f} na conta de {self.__titular}. \nNovo saldo: R${self.__saldo:.2f}')
         
     def saca(self, valor):
-        self.__saldo -= valor
-        print(f'Sacou: R$ {valor:.2f} da conta de {self.__titular}. \nNovo saldo: R${self.__saldo:.2f}')
+        if self.__pode_sacar(valor):
+            self.__saldo -= valor
+            print(f'Sacou: R$ {valor:.2f} da conta de {self.__titular}. \nNovo saldo: R${self.__saldo:.2f}')
+        else:
+            print(f'Valor R$ {valor:.2f} ultrapassa o limite de R$ {self.__limite + self.__saldo:.2f}')
     
     def transfere(self, valor, destino):
         self.saca(valor)
         destino.deposita(valor)
         
         print(f'R$ {valor:.2f} transferido de {self.__titular} para {destino.__titular}')
+
+    def __pode_sacar(self, valor):
+        valor_disponivel = self.__saldo + self.__limite
+        return valor <= valor_disponivel
         
 #    # getters & setters
     
