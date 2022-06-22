@@ -40,7 +40,7 @@ class Conta:
 #     def set_limite(self, limite):
 #         self.__limite = limite
         
-    # properties
+    # properties > getters & setters
     
     @property
     def saldo(self):
@@ -58,5 +58,11 @@ class Conta:
     def limite(self, limite):
         self.__limite = limite
 
+    @staticmethod
+    def codigo_banco():
+        return "001"
         
-  
+    @staticmethod
+    def codigos_banco():
+        return {'BB': '001', 'Caixa': '104', 'Bradesco':'237'}
+        
